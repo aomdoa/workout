@@ -1,0 +1,24 @@
+{
+  "name": "workout-server",
+  "version": "1.0.0",
+  "description": "Server portion for the workout software",
+  "author": "David Shurgold <aomdoa@gmail.com>",
+  "license": "GPL-3.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prisma-client-lib": "^1.34.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
+  }
+}

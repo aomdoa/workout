@@ -1,0 +1,109 @@
+## USER DETAILS ##
+
+type User {
+  id: ID! @id
+  name: String!
+}
+
+type UserMeasurement {
+  id: ID! @id
+  user: User!
+  measurement: Measurement!
+  date: DateTime!
+  value: Float!
+}
+
+type Measurement {
+  id: ID! @id
+  name: String!
+  unit: String!
+}
+  
+
+## WORKOUT DEFINITION ##
+
+# Parameters are simply the list of what's expected - never required - count, weight, duration, etc.
+type ExerciseParameter {
+  id: ID! @id
+  name: String!
+  description: String!
+}
+
+# Describe the type of exercise and parameters expected
+type ExerciseType {
+  id: ID! @id
+  name: String!
+  parameters: [ExerciseParameter!]!
+}
+
+# The description of the exercise which is based on type
+type Exercise {
+  id: ID! @id
+  name: String!
+  description: String
+  type: ExerciseType!
+}
+
+# For the routine build out the order of the exercises
+type ExerciseRoutine {
+  id: ID! @id
+  order: Int!
+  exercise: Exercise!
+  routine: Routine!
+}
+
+# The is the grouping of excerises into a routine that will be executed on
+type Routine {
+  id: ID! @id
+  name: String!
+}
+
+# Order of the routines for this workout plan
+type RoutineWorkoutPlan {
+  id: ID! @id
+  order: Int!
+  routine: Routine!
+  plan: WorkoutPlan!
+}
+
+# The plan for a workout with the routines expected
+type WorkoutPlan {
+  id: ID! @id
+  name: String!
+  description: String
+}
+
+## WORKOUT EXECUTION ##
+ 
+# Execution of a routine on a date. If multiple routines are done they're simply executed on same date but diff time (which then gives the order)
+type Workout {
+  id: ID! @id
+  user: User!
+  date: DateTime!
+  plan: WorkoutPlan!
+  routine: Routine!
+}
+
+# Exercises for the routine executed within this workout instance
+type WorkoutExercise {
+  id: ID! @id
+  workout: Workout!
+  exercise: Exercise!
+  parameters: [WorkoutParameter!]!
+}
+
+# Parameters for the workout
+type WorkoutParameter {
+  id: ID! @id
+  parameter: ExerciseParameter!
+  value: Float 
+}
+
+# Individual actions on a day not part of a routine - e.g. biking, walking, etc.
+type DailyExercise {
+  id: ID! @id
+  user: User!
+  date: DateTime!
+  exercise: Exercise!
+  parameters: [WorkoutParameter!]!
+}
