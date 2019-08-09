@@ -771,6 +771,7 @@ type Measurement {
   id: ID!
   name: String!
   unit: String!
+  description: String
 }
 
 type MeasurementConnection {
@@ -783,6 +784,7 @@ input MeasurementCreateInput {
   id: ID
   name: String!
   unit: String!
+  description: String
 }
 
 input MeasurementCreateOneInput {
@@ -802,12 +804,15 @@ enum MeasurementOrderByInput {
   name_DESC
   unit_ASC
   unit_DESC
+  description_ASC
+  description_DESC
 }
 
 type MeasurementPreviousValues {
   id: ID!
   name: String!
   unit: String!
+  description: String
 }
 
 type MeasurementSubscriptionPayload {
@@ -831,16 +836,19 @@ input MeasurementSubscriptionWhereInput {
 input MeasurementUpdateDataInput {
   name: String
   unit: String
+  description: String
 }
 
 input MeasurementUpdateInput {
   name: String
   unit: String
+  description: String
 }
 
 input MeasurementUpdateManyMutationInput {
   name: String
   unit: String
+  description: String
 }
 
 input MeasurementUpdateOneRequiredInput {
@@ -898,6 +906,20 @@ input MeasurementWhereInput {
   unit_not_starts_with: String
   unit_ends_with: String
   unit_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   AND: [MeasurementWhereInput!]
   OR: [MeasurementWhereInput!]
   NOT: [MeasurementWhereInput!]
@@ -1293,6 +1315,8 @@ type Subscription {
 type User {
   id: ID!
   name: String!
+  email: String!
+  password: String!
 }
 
 type UserConnection {
@@ -1304,6 +1328,8 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   name: String!
+  email: String!
+  password: String!
 }
 
 input UserCreateOneInput {
@@ -1435,11 +1461,17 @@ enum UserOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
+  email: String!
+  password: String!
 }
 
 type UserSubscriptionPayload {
@@ -1462,14 +1494,20 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateDataInput {
   name: String
+  email: String
+  password: String
 }
 
 input UserUpdateInput {
   name: String
+  email: String
+  password: String
 }
 
 input UserUpdateManyMutationInput {
   name: String
+  email: String
+  password: String
 }
 
 input UserUpdateOneRequiredInput {
@@ -1513,6 +1551,34 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

@@ -720,7 +720,9 @@ export type MeasurementOrderByInput =
   | "name_ASC"
   | "name_DESC"
   | "unit_ASC"
-  | "unit_DESC";
+  | "unit_DESC"
+  | "description_ASC"
+  | "description_DESC";
 
 export type RoutineOrderByInput =
   | "id_ASC"
@@ -734,7 +736,15 @@ export type RoutineWorkoutPlanOrderByInput =
   | "order_ASC"
   | "order_DESC";
 
-export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC";
 
 export type UserMeasurementOrderByInput =
   | "id_ASC"
@@ -905,6 +915,34 @@ export interface UserWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -1123,6 +1161,20 @@ export interface MeasurementWhereInput {
   unit_not_starts_with?: Maybe<String>;
   unit_ends_with?: Maybe<String>;
   unit_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
   AND?: Maybe<MeasurementWhereInput[] | MeasurementWhereInput>;
   OR?: Maybe<MeasurementWhereInput[] | MeasurementWhereInput>;
   NOT?: Maybe<MeasurementWhereInput[] | MeasurementWhereInput>;
@@ -1348,6 +1400,8 @@ export interface UserCreateOneInput {
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
+  email: String;
+  password: String;
 }
 
 export interface ExerciseCreateOneInput {
@@ -1420,6 +1474,8 @@ export interface UserUpdateOneRequiredInput {
 
 export interface UserUpdateDataInput {
   name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
 }
 
 export interface UserUpsertNestedInput {
@@ -1756,16 +1812,19 @@ export interface MeasurementCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   unit: String;
+  description?: Maybe<String>;
 }
 
 export interface MeasurementUpdateInput {
   name?: Maybe<String>;
   unit?: Maybe<String>;
+  description?: Maybe<String>;
 }
 
 export interface MeasurementUpdateManyMutationInput {
   name?: Maybe<String>;
   unit?: Maybe<String>;
+  description?: Maybe<String>;
 }
 
 export interface RoutineUpdateInput {
@@ -1823,10 +1882,14 @@ export interface RoutineWorkoutPlanUpdateManyMutationInput {
 
 export interface UserUpdateInput {
   name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
 }
 
 export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
 }
 
 export interface UserMeasurementCreateInput {
@@ -1859,6 +1922,7 @@ export interface MeasurementUpdateOneRequiredInput {
 export interface MeasurementUpdateDataInput {
   name?: Maybe<String>;
   unit?: Maybe<String>;
+  description?: Maybe<String>;
 }
 
 export interface MeasurementUpsertNestedInput {
@@ -2250,11 +2314,15 @@ export interface DailyExerciseNullablePromise
 export interface User {
   id: ID_Output;
   name: String;
+  email: String;
+  password: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -2262,6 +2330,8 @@ export interface UserSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserNullablePromise
@@ -2269,6 +2339,8 @@ export interface UserNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
 }
 
 export interface Exercise {
@@ -2779,12 +2851,14 @@ export interface Measurement {
   id: ID_Output;
   name: String;
   unit: String;
+  description?: String;
 }
 
 export interface MeasurementPromise extends Promise<Measurement>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   unit: () => Promise<String>;
+  description: () => Promise<String>;
 }
 
 export interface MeasurementSubscription
@@ -2793,6 +2867,7 @@ export interface MeasurementSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   unit: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
 }
 
 export interface MeasurementNullablePromise
@@ -2801,6 +2876,7 @@ export interface MeasurementNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   unit: () => Promise<String>;
+  description: () => Promise<String>;
 }
 
 export interface MeasurementConnection {
@@ -3760,6 +3836,7 @@ export interface MeasurementPreviousValues {
   id: ID_Output;
   name: String;
   unit: String;
+  description?: String;
 }
 
 export interface MeasurementPreviousValuesPromise
@@ -3768,6 +3845,7 @@ export interface MeasurementPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   unit: () => Promise<String>;
+  description: () => Promise<String>;
 }
 
 export interface MeasurementPreviousValuesSubscription
@@ -3776,6 +3854,7 @@ export interface MeasurementPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   unit: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
 }
 
 export interface RoutineSubscriptionPayload {
@@ -3894,6 +3973,8 @@ export interface UserSubscriptionPayloadSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   name: String;
+  email: String;
+  password: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -3901,6 +3982,8 @@ export interface UserPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -3908,6 +3991,8 @@ export interface UserPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserMeasurementSubscriptionPayload {

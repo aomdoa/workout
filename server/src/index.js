@@ -1,15 +1,40 @@
-import { prisma } from 'generated/prisma'
+const { GraphQLServer } = require('graphql-yoga')
+const { prisma } = require('./generated/prisma')
+const Mutation = require('./resolvers/Mutation')
 
-// A `main` function so that we can use async/await
-async function main() {
-  // Create a new user called `Alice`
-  const newUser = await prisma.createUser({ name: 'Alice' })
-  console.log(`Created new user: ${newUser.name} (ID: ${newUser.id})`)
-
-  // Read all users from the database and print them to the console
-  const allUsers = await prisma.users()
-  console.log(allUsers)
+const typeDefs = `
+type Query {
+  info: String!
+  feed: [Link!]!
 }
 
-main().catch(e => console.error(e))
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+}
+`
+
+let links = [{
+  id: 'link-0',
+  url: 'www.howtographql.com',
+  description: 'Fullstack tutorial for GraphQL'
+}]
+
+const resolvers = {
+  Mutation
+}
+
+const server = new GraphQLServer({
+  typeDefs: './src/schema.graphql',
+  resolvers,
+  context: request => {
+    return {
+      ...request,
+      prisma,
+    }
+  },
+})
+
+server.start(() => console.log(`Server is running on http://localhost:4000`))
 

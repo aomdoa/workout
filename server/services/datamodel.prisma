@@ -1,8 +1,9 @@
 ## USER DETAILS ##
-
 type User {
   id: ID! @id
   name: String!
+  email: String!
+  password: String!
 }
 
 type UserMeasurement {
@@ -17,6 +18,7 @@ type Measurement {
   id: ID! @id
   name: String!
   unit: String!
+  description: String
 }
   
 
