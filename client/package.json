@@ -5,7 +5,11 @@
   "author": "David Shurgold <aomdoa@gmail.com>",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@material-ui/core": "^4.3.2",
+    "apollo-boost": "^0.4.4",
+    "graphql": "^14.4.2",
     "react": "^16.9.0",
+    "react-apollo": "^3.0.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.0"
   },
