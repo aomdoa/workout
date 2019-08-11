@@ -2,8 +2,8 @@
   "name": "workout-server",
   "version": "1.0.0",
   "description": "Server portion for the workout software",
-  "author": "",
-  "license": "ISC",
+  "author": "David Shurgold <aomdoa@gmail.com>",
+  "license": "GPL-3.0-or-later",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js"
