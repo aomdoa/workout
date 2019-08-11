@@ -1,9 +1,13 @@
 type Query {
+  info: String!
+  getMeasurements: [Measurement!]!
 }
 
 type Mutation {
   signup(email: String!, password: String!, name: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
+
+  addMeasurement(name: String!, unit: String!, description: String): Measurement!
 }
 
 type AuthPayload {
@@ -23,6 +27,7 @@ type UserMeasurement {
   id: ID!
   measurement: Measurement!
   date: String!
+  user: User!
   value: Float!
 } 
 
@@ -30,5 +35,6 @@ type Measurement {
   id: ID!
   name: String!
   unit: String!
+  addedBy: User!
   description: String
 }

@@ -1161,6 +1161,7 @@ export interface MeasurementWhereInput {
   unit_not_starts_with?: Maybe<String>;
   unit_ends_with?: Maybe<String>;
   unit_not_ends_with?: Maybe<String>;
+  addedBy?: Maybe<UserWhereInput>;
   description?: Maybe<String>;
   description_not?: Maybe<String>;
   description_in?: Maybe<String[] | String>;
@@ -1268,6 +1269,7 @@ export interface WorkoutPlanWhereInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  email?: Maybe<String>;
 }>;
 
 export type UserMeasurementWhereUniqueInput = AtLeastOne<{
@@ -1812,12 +1814,14 @@ export interface MeasurementCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   unit: String;
+  addedBy: UserCreateOneInput;
   description?: Maybe<String>;
 }
 
 export interface MeasurementUpdateInput {
   name?: Maybe<String>;
   unit?: Maybe<String>;
+  addedBy?: Maybe<UserUpdateOneRequiredInput>;
   description?: Maybe<String>;
 }
 
@@ -1922,6 +1926,7 @@ export interface MeasurementUpdateOneRequiredInput {
 export interface MeasurementUpdateDataInput {
   name?: Maybe<String>;
   unit?: Maybe<String>;
+  addedBy?: Maybe<UserUpdateOneRequiredInput>;
   description?: Maybe<String>;
 }
 
@@ -2858,6 +2863,7 @@ export interface MeasurementPromise extends Promise<Measurement>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   unit: () => Promise<String>;
+  addedBy: <T = UserPromise>() => T;
   description: () => Promise<String>;
 }
 
@@ -2867,6 +2873,7 @@ export interface MeasurementSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   unit: () => Promise<AsyncIterator<String>>;
+  addedBy: <T = UserSubscription>() => T;
   description: () => Promise<AsyncIterator<String>>;
 }
 
@@ -2876,6 +2883,7 @@ export interface MeasurementNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   unit: () => Promise<String>;
+  addedBy: <T = UserPromise>() => T;
   description: () => Promise<String>;
 }
 

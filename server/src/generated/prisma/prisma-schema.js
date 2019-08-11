@@ -771,6 +771,7 @@ type Measurement {
   id: ID!
   name: String!
   unit: String!
+  addedBy: User!
   description: String
 }
 
@@ -784,6 +785,7 @@ input MeasurementCreateInput {
   id: ID
   name: String!
   unit: String!
+  addedBy: UserCreateOneInput!
   description: String
 }
 
@@ -836,12 +838,14 @@ input MeasurementSubscriptionWhereInput {
 input MeasurementUpdateDataInput {
   name: String
   unit: String
+  addedBy: UserUpdateOneRequiredInput
   description: String
 }
 
 input MeasurementUpdateInput {
   name: String
   unit: String
+  addedBy: UserUpdateOneRequiredInput
   description: String
 }
 
@@ -906,6 +910,7 @@ input MeasurementWhereInput {
   unit_not_starts_with: String
   unit_ends_with: String
   unit_not_ends_with: String
+  addedBy: UserWhereInput
   description: String
   description_not: String
   description_in: [String!]
@@ -1586,6 +1591,7 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }
 
 type Workout {
