@@ -4,7 +4,7 @@ const APP_SECRET = 'this is secret'
 /**
  * Extract the user id from the verified Authorization header
  */
-function getUserId(context) {
+function getUserId (context) {
   const Authorization = context.request.get('Authorization')
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '')
@@ -17,6 +17,5 @@ function getUserId(context) {
 
 module.exports = {
   APP_SECRET,
-  getUserId,
+  getUserId
 }
-

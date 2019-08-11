@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { prisma } = require('./generated/prisma')
-const Query = require('./resolvers/Query');
+const Query = require('./resolvers/Query')
 const Mutation = require('./resolvers/Mutation')
 const Measurement = require('./resolvers/Measurement')
 
@@ -16,10 +16,9 @@ const server = new GraphQLServer({
   context: request => {
     return {
       ...request,
-      prisma,
+      prisma
     }
-  },
+  }
 })
 
 server.start(() => console.log(`Server is running on http://localhost:4000`))
-

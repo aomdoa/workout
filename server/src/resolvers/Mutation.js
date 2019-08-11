@@ -8,14 +8,14 @@ const { APP_SECRET, getUserId } = require('../utils')
  * args.email - The email for the user
  * args.password - The password for the user (stored hashed)
  * @return AuthPayload
- */ 
-async function signup(parent, args, context, info) {
+ */
+async function signup (parent, args, context, info) {
   const password = await bcrypt.hash(args.password, 10)
   const user = await context.prisma.createUser({ ...args, password })
   const token = jwt.sign({ userId: user.id }, APP_SECRET)
   return {
     token,
-    user,
+    user
   }
 }
 
@@ -25,7 +25,7 @@ async function signup(parent, args, context, info) {
  * args.password - The password for the user
  * @return AuthPayload - On successful login
  */
-async function login(parent, args, context, info) {
+async function login (parent, args, context, info) {
   const user = await context.prisma.user({ email: args.email })
   if (!user) {
     throw new Error('No such user found')
@@ -39,7 +39,7 @@ async function login(parent, args, context, info) {
   const token = jwt.sign({ userId: user.id }, APP_SECRET)
   return {
     token,
-    user,
+    user
   }
 }
 
@@ -49,7 +49,7 @@ async function login(parent, args, context, info) {
  * args.unit - The unit that's used for this measurment
  * args.description - A description of the measurement
  */
-async function addMeasurement(parent, args, context, info) {
+async function addMeasurement (parent, args, context, info) {
   const userId = getUserId(context)
   return context.prisma.createMeasurement({
     name: args.name,
@@ -62,6 +62,5 @@ async function addMeasurement(parent, args, context, info) {
 module.exports = {
   signup,
   login,
-  addMeasurement,
+  addMeasurement
 }
-
