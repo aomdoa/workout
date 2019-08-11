@@ -43,8 +43,25 @@ async function login(parent, args, context, info) {
   }
 }
 
+/**
+ * Add a new measurement type
+ * args.name - The name of the thing being measured
+ * args.unit - The unit that's used for this measurment
+ * args.description - A description of the measurement
+ */
+async function addMeasurement(parent, args, context, info) {
+  const userId = getUserId(context)
+  return context.prisma.createMeasurement({
+    name: args.name,
+    unit: args.unit,
+    description: args.description,
+    addedBy: { connect: { id: userId } }
+  })
+}
+
 module.exports = {
   signup,
   login,
+  addMeasurement,
 }
 

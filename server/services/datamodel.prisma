@@ -16,7 +16,7 @@ type UserMeasurement {
 
 type Measurement {
   id: ID! @id
-  name: String!
+  name: String! @unique
   unit: String!
   addedBy: User!
   description: String

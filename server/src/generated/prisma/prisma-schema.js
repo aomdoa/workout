@@ -932,6 +932,7 @@ input MeasurementWhereInput {
 
 input MeasurementWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type Mutation {

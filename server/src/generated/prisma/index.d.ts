@@ -1116,6 +1116,7 @@ export type ExerciseTypeWhereUniqueInput = AtLeastOne<{
 
 export type MeasurementWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  name?: Maybe<String>;
 }>;
 
 export interface MeasurementWhereInput {
