@@ -12,6 +12,7 @@ class Header extends Component {
       <div>
         <div>
           <div>Workout App</div>
+          <Link to="/measurements">Measurements</Link>
         </div>
         <div>
           {authToken ? (

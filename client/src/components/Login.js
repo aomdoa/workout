@@ -42,11 +42,11 @@ class Login extends Component {
             variables={{ email, password }}
             onCompleted={ data => this._confirm(data) }
           >
-            {mutation => (
-              <div onClick={mutation}>
-                login
-              </div>
-            )}
+          {mutation => (
+            <div onClick={mutation}>
+              login
+            </div>
+          )}
           </Mutation>
         </div>
       </div>
